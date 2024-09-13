@@ -1,0 +1,62 @@
+From 15b7ec511aa51e17dddc7a99814473caa620e64b Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Sun, 8 Sep 2024 13:17:49 +0800
+Subject: [PATCH] install
+
+---
+ WebEditSci.pro           | 10 +++++++++-
+ icons/WebEditSci.desktop | 11 +++++++++++
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+ create mode 100644 icons/WebEditSci.desktop
+
+diff --git a/WebEditSci.pro b/WebEditSci.pro
+index f929141..37cf70a 100644
+--- a/WebEditSci.pro
++++ b/WebEditSci.pro
+@@ -14,7 +14,7 @@ CONFIG += qscintilla2
+ TARGET = WebEditSci
+ TEMPLATE = app
+ 
+-
++INCLUDEPATH += $$PREFIX/include/x86_64-linux-gnu/qt5
+ SOURCES += main.cpp\
+         mainwindow.cpp \
+     tabwidget.cpp \
+@@ -30,8 +30,16 @@ HEADERS  += mainwindow.h \
+ 
+ RESOURCES += \
+     res.qrc
++LIBS += -L$$PREFIX/lib -lqscintilla2_qt5
++
+ 
++target.path = $$PREFIX/bin
++desktop.files = icons/WebEditSci.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons/hicolor/apps/
++icons.files = icons/WebEditSci.png
+ 
++INSTALLS += target desktop icons
+ #RC_FILE += \
+  #   myapp.rc
+ 
+diff --git a/icons/WebEditSci.desktop b/icons/WebEditSci.desktop
+new file mode 100644
+index 0000000..de256f6
+--- /dev/null
++++ b/icons/WebEditSci.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=WebEditSci
++Name=WebEditSci
++Name[zh_CN]=WebEditSci
++Icon=WebEditSci
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=WebEditSci
++Version=1.0
+\ No newline at end of file
+-- 
+2.43.4
+
